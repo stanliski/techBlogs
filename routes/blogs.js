@@ -42,6 +42,7 @@ router.get('/', function(req, res){
 
 });
 
+
 router.get('/intro', function(req, res){
 	var id = req.query['id'];
 	Blog.find({}).sort('-created_at').populate('group').exec(function(err, blogs, count){
@@ -61,8 +62,16 @@ router.get('/intro', function(req, res){
 						groups:group
 					});
 		});
-		
+
 	});
 });
+
+///** PREVIEW EDIT BLOGS. */
+//router.get('/preview', function(req, res){
+//	var content = req.query['preview_content'];
+//	res.render('preview-blog', {'blog_content':content});
+//});
+
+
 
 module.exports = router;

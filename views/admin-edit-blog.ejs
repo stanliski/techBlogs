@@ -118,7 +118,19 @@
                   <div class="am-g am-margin-top-sm">
                     <div class="am-u-sm-4 am-u-md-2 am-text-right">BLOG 内容</div>
                     <div class="am-u-sm-8 am-u-md-9 am-u-end">
-                      <textarea rows="10" cols="15" id="blog-content" value="<%=blog.content%>"><%=blog.content%></textarea>
+                      <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span>
+            			<span id="full-screen-btn" class="admin-fullText">开启全屏编辑</span></a></li>
+                      <br />
+                      <pre id="editor" style="height: 640px; width: 100%;"><%=blog.content%></pre>
+						<!-- load ace -->
+						<script>
+						    var editor = ace.edit("editor");
+						    editor.setTheme("ace/theme/tomorrow_night_eighties");
+						    editor.session.setMode("ace/mode/html");
+						    editor.setAutoScrollEditorIntoView(true);
+						    editor.setOption("maxLines", 40);
+						    editor.setValue($('#editor-content')); // or session.setValue
+						</script>
                     </div>
                   </div>
                 </form>
@@ -129,7 +141,10 @@
 
           <div class="am-margin">
             <button id="update-blog-btn" type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
-            <button id="cancel-createblog-btn" type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
+            <form action="preview" method="post" class="am-btn am-btn-xs" target="_blank">
+            	<input name="preview_content" id="preview-content" type="hidden" value="" />
+            	<input id="submit-preview-btn" type="submit" class="am-btn am-btn-success am-btn-xs" value="预览"></input>
+            </form>
           </div>
         </div>
         
@@ -152,3 +167,13 @@
   		</div>
 	  </div>
 	</div>
+	<!-- preview pages -->
+	<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+	  	<div class="am-modal-dialog">
+	    <div class="am-modal-hd">Preview Function
+	      <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+	    </div>
+	    <div class="am-modal-bd" id="preview-webpage-div">
+	    </div>
+  	</div>
+</div>

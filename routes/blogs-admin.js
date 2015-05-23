@@ -12,6 +12,7 @@ router.get('/', function(req, res) {
 	res.render('admin-index', { title: 'Express' });
 });
 
+
 /* GET Blog List. */
 router.get('/list', function(req, res){
 	Blog.find({}).populate('group').sort('-created_at').exec(function(err, blogs, count){
@@ -230,5 +231,11 @@ router.post('/get', function(req, res){
 		});
 	});
 });
+
+router.post('/preview', function(req, res){
+	var content = req.body.preview_content;
+	res.render('preview-blog', {'blog_content':content});
+});
+
 
 module.exports = router;

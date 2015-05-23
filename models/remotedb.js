@@ -1,5 +1,5 @@
-var mongoose = require( 'mongoose' );
-var Schema   = mongoose.Schema;
+var mongoose_remote = require( 'mongoose' );
+var Schema   = mongoose_remote.Schema;
  
 // Config 
 //var Settings = new Schema({
@@ -38,4 +38,4 @@ var Label = mongoose.model(	'Label', Label );
 var Group = mongoose.model(	'Group', Group );
 
 //mongoose.connect( 'mongodb://42.96.203.20/techblogs' );
-mongoose.connect( 'mongodb://127.0.0.1/techblogs' );
+mongoose_remote.connect( 'mongodb://42.96.203.20/techblogs' );
